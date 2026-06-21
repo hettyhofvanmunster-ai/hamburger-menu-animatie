@@ -1,66 +1,104 @@
-:root {
-    --menu-color: #D84282;
-    --menu-bar-width: 60px;
-    --menu-bar-height: 10px;
+* {
+    box-sizing: border-box;
 }
 
 body {
-    min-height: 100vh;
     margin: 0;
+    padding: 16px;
+    background-color: #f8ead7;
+    font-family: Arial, sans-serif;
+}
+
+.grid-container {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: 1fr;
+    grid-template-rows:
+    50px
+    240px
+    100px
+    1fr
+    50px;
+    grid-template-areas:
+        "a"
+        "b"
+        "c"
+        "d"
+        "e"
+        "f";
+}
+
+.item {
+    background-color: #c43846;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.menu-container {
-    width: 80px;
-    height: 80px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-
-    /* tijdelijk om te controleren */
-    border: 2px solid limegreen;
+.item-a {
+    grid-area: a;
 }
 
-#menu {
-    background-color: var(--menu-color);
-    position: relative;
-    width: var(--menu-bar-width);
-    height: var(--menu-bar-height);
-    transition: background-color 0.3s ease;
+.item-b {
+    grid-area: b;
+    display: block;
+    padding: 16px;
+    font-size: 12px;
+    line-height: 1.4;
 }
 
-#menu::before,
-#menu::after {
-    content: "";
-    background-color: var(--menu-color);
-    width: var(--menu-bar-width);
-    height: var(--menu-bar-height);
-    position: absolute;
-    left: 0;
-    transition: transform 0.3s ease, top 0.3s ease;
+.item-c {
+    grid-area: c;
 }
 
-#menu::before {
-    top: -20px;
+.item-d {
+    grid-area: d;
 }
 
-#menu::after {
-    top: 20px;
+.item-e {
+    grid-area: e;
 }
 
-.menu-container:hover #menu {
-    background-color: transparent;
+.item-f {
+    grid-area: f;
 }
 
-.menu-container:hover #menu::before {
-    top: 0;
-    transform: rotate(45deg);
+@media (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows:
+            50px
+            240px
+            100px
+            auto
+            50px;
+        grid-template-areas:
+            "a . ."
+            "b c c"
+            "b e d"
+            "b e ."
+            "f f f";
+    }
 }
+@media (min-width: 768px) {
+    .grid-container {
+        max-width: 900px;
+        margin: 0 auto;
 
-.menu-container:hover #menu::after {
-    top: 0;
-    transform: rotate(-45deg);
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows:
+            50px
+            240px
+            100px
+            100px
+            50px;
+
+        grid-template-areas:
+            "a . ."
+            "b c c"
+            "b e d"
+            "b e ."
+            "f f f";
+    }
 }
