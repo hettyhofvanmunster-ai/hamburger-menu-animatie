@@ -1,0 +1,66 @@
+:root {
+    --menu-color: #D84282;
+    --menu-bar-width: 60px;
+    --menu-bar-height: 10px;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-container {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    /* tijdelijk om te controleren */
+    border: 2px solid limegreen;
+}
+
+#menu {
+    background-color: var(--menu-color);
+    position: relative;
+    width: var(--menu-bar-width);
+    height: var(--menu-bar-height);
+    transition: background-color 0.3s ease;
+}
+
+#menu::before,
+#menu::after {
+    content: "";
+    background-color: var(--menu-color);
+    width: var(--menu-bar-width);
+    height: var(--menu-bar-height);
+    position: absolute;
+    left: 0;
+    transition: transform 0.3s ease, top 0.3s ease;
+}
+
+#menu::before {
+    top: -20px;
+}
+
+#menu::after {
+    top: 20px;
+}
+
+.menu-container:hover #menu {
+    background-color: transparent;
+}
+
+.menu-container:hover #menu::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.menu-container:hover #menu::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
